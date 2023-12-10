@@ -2,10 +2,6 @@
 
 namespace App\Core\Lava;
 
-use Monolog\Formatter\LineFormatter;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
-
 define('PEAR_LOG_EMERG',    LavaLogLevel::EMERGENCY);     /* System is unusable */
 define('PEAR_LOG_ALERT',    LavaLogLevel::ALERT);     /* Immediate action required */
 define('PEAR_LOG_CRIT',     LavaLogLevel::CRITICAL);     /* Critical conditions */

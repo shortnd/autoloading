@@ -29,6 +29,10 @@ abstract class LavaAbstractLogger implements LavaLoggerInterface
 		return $this->mask;
 	}
 
+	/**
+	 * @param string $level
+	 * @return bool
+	 */
 	public function canBeLogged(string $level)
 	{
 		$index = array_search($this->getLogMask(), $this->logLevels, true);
