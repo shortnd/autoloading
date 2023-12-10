@@ -1,0 +1,44 @@
+Dec 10 22:09:05 [100] ___________12-10-2023 22:09:05 
+Dec 10 22:09:05 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 10 22:09:05 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 10 22:09:05 [debug] REQUEST_METHOD:  GET 
+Dec 10 22:09:05 [debug] QUERY_STRING:     
+Dec 10 22:09:05 [debug] REQUEST_URI:     / 
+Dec 10 22:09:05 [debug] PHP_SELF:        /index.php/ 
+Dec 10 22:09:05 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 10 22:09:05 [debug] First page access in session 
+Dec 10 22:09:05 [debug] Refreshing session timeout 
+Dec 10 22:09:05 [debug] Running action: \App\Actions\Public\Home 
+Dec 10 22:09:05 [info] DUDE 
+Dec 10 22:09:05 [100] ___________12-10-2023 22:09:05 
+Dec 10 22:09:05 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 10 22:09:05 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 10 22:09:05 [debug] REQUEST_METHOD:  GET 
+Dec 10 22:09:05 [debug] QUERY_STRING:     
+Dec 10 22:09:05 [debug] REQUEST_URI:     /favicon.ico 
+Dec 10 22:09:05 [debug] PHP_SELF:        /index.php/favicon.ico 
+Dec 10 22:09:05 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 10 22:09:05 [debug] First page access in session 
+Dec 10 22:09:05 [debug] Refreshing session timeout 
+Dec 10 22:10:30 [info] DUDE 
+Dec 10 22:10:49 [info] DUDE 
+Dec 10 22:11:00 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 10 22:11:00 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 10 22:11:00 [debug] REQUEST_METHOD:  GET 
+Dec 10 22:11:00 [debug] QUERY_STRING:     
+Dec 10 22:11:00 [debug] REQUEST_URI:     / 
+Dec 10 22:11:00 [debug] PHP_SELF:        /index.php/ 
+Dec 10 22:11:00 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 10 22:11:00 [debug] First page access in session 
+Dec 10 22:11:00 [debug] Refreshing session timeout 
+Dec 10 22:11:00 [debug] Running action: \App\Actions\Public\Home 
+Dec 10 22:11:00 [info] DUDE 
+Dec 10 22:11:00 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 10 22:11:00 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 10 22:11:00 [debug] REQUEST_METHOD:  GET 
+Dec 10 22:11:00 [debug] QUERY_STRING:     
+Dec 10 22:11:00 [debug] REQUEST_URI:     /favicon.ico 
+Dec 10 22:11:00 [debug] PHP_SELF:        /index.php/favicon.ico 
+Dec 10 22:11:00 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 10 22:11:00 [debug] First page access in session 
+Dec 10 22:11:00 [debug] Refreshing session timeout 
