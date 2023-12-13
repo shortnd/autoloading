@@ -7,20 +7,31 @@ use PDO;
 
 abstract class LavaPdo
 {
+	/** @var PDO */
 	protected static $dbh;
+	/** @var string */
 	public $table;
-
+	/** @var string */
 	public $model;
 
+	/** @var Lava */
 	private $app;
+	/** @var array */
 	private $schema;
+	/** @var int|string */
 	private $pk;
+	/** @var array */
 	private $noUpdate = [];
+	/** @var string */
 	private $sequence;
+	/** @var string|null */
 	private $insertStmt;
+	/** @var string|null */
 	private $updateStmt;
+	/** @var string|null */
 	private $deleteStmt;
 
+	/** @var bool */
 	private $insertWithPrimaryKeyValue = false;
 
 	public function __construct(Lava $app)
@@ -34,6 +45,29 @@ abstract class LavaPdo
 	 */
 	abstract protected function connection();
 
+	/**
+	 * @param array $params
+	 * @param string|null $sort
+	 * @param LavaPdoType::ASC|LavaPdoType::DESC|null $direction
+	 * @param array $sideloadResources
+	 * @return mixed[]
+	 */
+	abstract public function select($params = [], $sort = null, $direction = null, $sideloadResources = null);
+
+	/**
+	 * @param array $params
+	 * @param string|null $sort
+	 * @param LavaPdoType::ASC|LavaPdoType::DESC|null $direction
+	 * @param array $sideloadResources
+	 * @return mixed
+	 */
+	abstract public function selectOne($params = [], $sort = null, $direction = null, $sideloadResources = null);
+
+	/**
+	 * @param int[]|int $id
+	 * @param string $orderBy
+	 * @return mixed[]|mixed
+	 */
 	public function find($id, $orderBy = "id")
 	{
 		$dbh = $this->connection();
@@ -43,13 +77,17 @@ abstract class LavaPdo
 				return $this->getAll($sql);
 			}
 			return [];
-		} else {
-			$stmt = $dbh->prepare("SELECT * FROM " . $this->table . " WHERE " . $this->pk . " = ?");
-			$stmt->execute([$id]);
-			return $stmt->fetchObject($this->model);
 		}
+
+		$stmt = $dbh->prepare("SELECT * FROM " . $this->table . " WHERE " . $this->pk . " = ?");
+		$stmt->execute([$id]);
+		return $stmt->fetchObject($this->model);
 	}
 
+	/**
+	 * @param mixed $row
+	 * @return false|string
+	 */
 	public function insert($row)
 	{
 		$row = clone($row);
@@ -73,13 +111,13 @@ abstract class LavaPdo
 		$values = [];
 		foreach ($fields as $field) {
 			switch ($this->getFieldType($field)) {
-				case LavaFieldType::INT:
-				case LavaFieldType::NUM:
-				case LavaFieldType::DATE:
+				case LavaPdoType::INT:
+				case LavaPdoType::NUM:
+				case LavaPdoType::DATE:
 					$values[] = (isset($row->$field) && $row->$field !== false && $row->$field === "") ? $row->$field : null;
 					break;
-				case LavaFieldType::STR:
-				case LavaFieldType::BLOB:
+				case LavaPdoType::STR:
+				case LavaPdoType::BLOB:
 					$values[] = isset($row->$field) ? $row->$field : null;
 			}
 		}
@@ -94,6 +132,11 @@ abstract class LavaPdo
 		return false;
 	}
 
+	/**
+	 * @param $row
+	 * @return bool
+	 * @throws Exception
+	 */
 	public function update($row)
 	{
 		$row = clone $row;
@@ -128,15 +171,15 @@ abstract class LavaPdo
 		foreach ($fields as $field) {
 			if (!in_array($field, $this->noUpdate, true)) {
 				switch ($this->getFieldType($field)) {
-					case LavaFieldType::INT:
-					case LavaFieldType::NUM:
+					case LavaPdoType::INT:
+					case LavaPdoType::NUM:
 						$values[] = ($row->$field || $row->$field === "0" || $row->$field === 0.0 || $row->$field === 0) ? $row->$field : null;
 						break;
-					case LavaFieldType::DATE:
+					case LavaPdoType::DATE:
 						$values[] = ($row->$field ?: null);
 						break;
-					case LavaFieldType::STR:
-					case LavaFieldType::BLOB:
+					case LavaPdoType::STR:
+					case LavaPdoType::BLOB:
 					default:
 						$values[] = isset($row->$field) ? $row->$field : null;
 				}
@@ -151,6 +194,11 @@ abstract class LavaPdo
 		return true;
 	}
 
+	/**
+	 * @param $target
+	 * @return bool|null
+	 * @throws Exception
+	 */
 	public function delete($target)
 	{
 		$dbh = $this->connection();
@@ -183,6 +231,12 @@ abstract class LavaPdo
 
 		return null;
 	}
+
+	/**
+	 * @param mixed $row
+	 * @return bool|null
+	 */
+	abstract public function deleteAt($row);
 
 	public function lastId()
 	{
@@ -324,6 +378,8 @@ abstract class LavaPdo
 		}
 		return null;
 	}
+
+	abstract public function orderBy($how = null, $direction = null);
 
 	/**
 	 * @param string $message

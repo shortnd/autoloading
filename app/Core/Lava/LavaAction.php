@@ -5,7 +5,7 @@ namespace App\Core\Lava;
 use Exception;
 use SmartyException;
 
-class LavaAction
+abstract class LavaAction
 {
 	public $app;
 	public $params;
@@ -24,13 +24,13 @@ class LavaAction
 	/**
 	 * @return mixed
 	 */
-	public function run(
+	abstract public function run(
 //		Lava $app
-	)
-	{
-//		$this->app = $app;
-		// ..override?
-	}
+	);
+//	{
+////		$this->app = $app;
+//		// ..override?
+//	}
 
 	public function getParams()
 	{
@@ -47,18 +47,18 @@ class LavaAction
 		$this->params[$name] = $value;
 	}
 
-	public function render($template, $params = [])
-	{
-//		if (!is_array($params)) {
-//			$params = [$params];
-//		}
-//		$this->tpl->assign($params);
-//
-//		try {
-//			$this->tpl->display($template);
-//			return true;
-//		} catch (SmartyException|Exception $_) {
-//			return false;
-//		}
-	}
+	abstract public function render($template, $params = []);
+//	{
+////		if (!is_array($params)) {
+////			$params = [$params];
+////		}
+////		$this->tpl->assign($params);
+////
+////		try {
+////			$this->tpl->display($template);
+////			return true;
+////		} catch (SmartyException|Exception $_) {
+////			return false;
+////		}
+//	}
 }
