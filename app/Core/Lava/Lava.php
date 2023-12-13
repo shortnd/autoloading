@@ -11,9 +11,10 @@ define('PEAR_LOG_NOTICE',   LavaLogLevel::NOTICE);     /* Normal but significant
 define('PEAR_LOG_INFO',     LavaLogLevel::INFO);     /* Informational */
 define('PEAR_LOG_DEBUG',    LavaLogLevel::DEBUG);     /* Debug-level messages */
 
-class Lava
+abstract class Lava
 {
-	public $config;
+	public $routes = [];
+	public $config = [];
 	public $pathInfo;
 	public $extension;
 	public  $action;
@@ -65,10 +66,7 @@ class Lava
 		$this->config['app']['controller']['includePaths'][] = $path;
 	}
 
-	public function init()
-	{
-		// override me
-	}
+	abstract public function init();
 
 	public function startSession($sessionStartHandler = null)
 	{
@@ -159,10 +157,7 @@ class Lava
 		}
 	}
 
-	public function checkAuthentication()
-	{
-		// override...
-	}
+	abstract public function checkAuthentication();
 
 	public function parsePath()
 	{
@@ -236,7 +231,7 @@ class Lava
 
 			$forward = $this->action->run($this);
 
-			if (strtolower(get_class($forward)) == "actionforward") {
+			if (strtolower(get_class($forward)) === "actionforward") {
 				// run the return action but DO NOT check cache again
 				$this->runAction($forward->path, $forward->params, false);
 			}
@@ -435,8 +430,25 @@ class Lava
 		return $contentType ?: 'text/html';
 	}
 
-	public function saveCachedResponse($response)
+	abstract public function saveCachedResponse($response);
+
+	public function setRoutes($routes = [])
 	{
-		// ...override
+		$this->routes = $routes;
+	}
+
+	public function addRoute($route = [])
+	{
+		$this->routes[] = $route;
+	}
+
+	public function setConfig($config = [])
+	{
+		$this->config = $config;
+	}
+
+	public function addConfig($option = [])
+	{
+		$this->config[] = $option;
 	}
 }

@@ -23,12 +23,6 @@ abstract class LavaPdo
 
 	private $insertWithPrimaryKeyValue = false;
 
-	public const INT = 1;
-	public const STR = 2;
-	public const DATE = 3;
-	public const NUM = 4;
-	public const BLOB = 5;
-
 	public function __construct(Lava $app)
 	{
 		$this->app = $app;
@@ -78,16 +72,15 @@ abstract class LavaPdo
 
 		$values = [];
 		foreach ($fields as $field) {
-			$fieldName = $fields;
-			switch ($this->getFieldType($fieldName)) {
-				case self::INT:
-				case self::NUM:
-				case self::DATE:
-					$values[] = (isset($row->$fieldName) && $row->$fieldName !== false && $row->$fieldName === "") ? $row->$fieldName : null;
+			switch ($this->getFieldType($field)) {
+				case LavaFieldType::INT:
+				case LavaFieldType::NUM:
+				case LavaFieldType::DATE:
+					$values[] = (isset($row->$field) && $row->$field !== false && $row->$field === "") ? $row->$field : null;
 					break;
-				case self::STR:
-				case self::BLOB:
-					$values[] = isset($row->$fieldName) ? $row->$fieldName : null;
+				case LavaFieldType::STR:
+				case LavaFieldType::BLOB:
+					$values[] = isset($row->$field) ? $row->$field : null;
 			}
 		}
 
@@ -135,15 +128,15 @@ abstract class LavaPdo
 		foreach ($fields as $field) {
 			if (!in_array($field, $this->noUpdate, true)) {
 				switch ($this->getFieldType($field)) {
-					case self::INT:
-					case self::NUM:
+					case LavaFieldType::INT:
+					case LavaFieldType::NUM:
 						$values[] = ($row->$field || $row->$field === "0" || $row->$field === 0.0 || $row->$field === 0) ? $row->$field : null;
 						break;
-					case self::DATE:
+					case LavaFieldType::DATE:
 						$values[] = ($row->$field ?: null);
 						break;
-					case self::STR:
-					case self::BLOB:
+					case LavaFieldType::STR:
+					case LavaFieldType::BLOB:
 					default:
 						$values[] = isset($row->$field) ? $row->$field : null;
 				}
@@ -213,6 +206,11 @@ abstract class LavaPdo
 		return $stmt->fetchObject($this->model);
 	}
 
+	/**
+	 * @param string $sql
+	 * @param array $values
+	 * @return array|false
+	 */
 	public function getAll($sql, $values = [])
 	{
 		$dbh = $this->connection();
@@ -220,6 +218,71 @@ abstract class LavaPdo
 		$stmt = $dbh->prepare($sql);
 		$stmt->execute($values);
 		return $stmt->fetchAll(PDO::FETCH_CLASS, $this->model);
+	}
+
+	/**
+	 * @param string $sql
+	 * @param array $values
+	 * @return mixed
+	 */
+	public function getOne($sql, $values = [])
+	{
+		$dbh = $this->connection();
+		$stmt = $dbh->prepare($sql);
+		$stmt->execute($values);
+		return $stmt->fetchColumn();
+	}
+
+	/**
+	 * @param string $sql
+	 * @param array $values
+	 * @return bool
+	 */
+	public function execute($sql, $values = [])
+	{
+		return $this->connection()->prepare($sql)->execute($values);
+	}
+
+	abstract protected function buildSchema();
+
+	/**
+	 * @param string $name
+	 * @param int $type
+	 * @param array $options
+	 * @return void
+	 */
+	protected function addField($name, $type, $options = []) {
+		$this->schema[] = [
+			"name" => $name,
+			"type" => $type,
+			"options" => $options
+		];
+		if (is_array($options) && count($options)) {
+			foreach ($options as $option) {
+				switch ($option) {
+					case 'primary-key':
+						$this->pk = $name;
+						break;
+					case 'no-update':
+						$this->noUpdate[] = $name;
+						break;
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param string $field
+	 * @return int|null
+	 */
+	protected function getFieldType($field)
+	{
+		foreach ($this->schema as $item) {
+			if ($item['name'] === $field) {
+				return $item['type'];
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -237,13 +300,66 @@ abstract class LavaPdo
 		return $fieldNames;
 	}
 
-	private function getFieldType($fieldName)
+	/**
+	 * @param string $name
+	 * @return bool
+	 */
+	public function hasField($name)
 	{
-		foreach ($this->schema as $value) {
-			if ($value['name'] === $fieldName) {
-				return $value['type'];
+		return in_array($name, $this->fieldNames(), true);
+	}
+
+	/**
+	 *  @return string|null;
+	 */
+	public function getPrimaryKey()
+	{
+		if (!is_array($this->schema)) {
+			return null;
+		}
+		foreach ($this->schema as $field) {
+			if (is_array($field['options']) && in_array('primary-key', $field['options'], true)) {
+				return $field['name'];
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @param string $message
+	 * @param int $level
+	 * @return void
+	 */
+	protected function log($message, $level=PEAR_LOG_INFO)
+	{
+		if ($this->app) {
+			$this->app->log($level, $message);
+		}
+	}
+
+	public function newModel()
+	{
+		return new $this->model;
+	}
+
+	public function begin()
+	{
+		$this
+			->connection()
+			->beginTransaction();
+	}
+
+	public function commit()
+	{
+		$this
+			->connection()
+			->commit();
+	}
+
+	public function rollBack()
+	{
+		$this
+			->connection()
+			->rollBack();
 	}
 }
