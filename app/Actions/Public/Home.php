@@ -11,4 +11,9 @@ class Home extends LavaAction
 		$this->app->log("DUDE", PEAR_LOG_INFO);
 		echo "CHECK A FILE?";
 	}
+
+	public function render($template, $params = [])
+	{
+		// TODO: Implement render() method.
+	}
 }

@@ -10,9 +10,9 @@ abstract class LavaPdo
 	/** @var PDO */
 	protected static $dbh;
 	/** @var string */
-	public $table;
+	protected $table;
 	/** @var string */
-	public $model;
+	protected $model;
 
 	/** @var Lava */
 	private $app;
@@ -23,7 +23,11 @@ abstract class LavaPdo
 	/** @var array */
 	private $noUpdate = [];
 	/** @var string */
-	private $sequence;
+	protected $sequence;
+
+	/** @var array */
+	protected $subResources = [];
+
 	/** @var string|null */
 	private $insertStmt;
 	/** @var string|null */

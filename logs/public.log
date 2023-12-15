@@ -42,3 +42,212 @@ Dec 10 22:11:00 [debug] PHP_SELF:        /index.php/favicon.ico
 Dec 10 22:11:00 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
 Dec 10 22:11:00 [debug] First page access in session 
 Dec 10 22:11:00 [debug] Refreshing session timeout 
+Dec 13 18:36:28 [debug] ___________12-13-2023 18:36:28 
+Dec 13 18:36:28 [debug] REMOTE_ADDR:     ::1 
+Dec 13 18:36:28 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:36:28 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:36:28 [debug] QUERY_STRING:     
+Dec 13 18:36:28 [debug] REQUEST_URI:     / 
+Dec 13 18:36:28 [debug] PHP_SELF:        /index.php 
+Dec 13 18:36:28 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:36:28 [debug] First page access in session 
+Dec 13 18:36:28 [debug] Refreshing session timeout 
+Dec 13 18:36:56 [debug] ___________12-13-2023 18:36:56 
+Dec 13 18:36:56 [debug] REMOTE_ADDR:     ::1 
+Dec 13 18:36:56 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:36:56 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:36:56 [debug] QUERY_STRING:     
+Dec 13 18:36:56 [debug] REQUEST_URI:     / 
+Dec 13 18:36:56 [debug] PHP_SELF:        /index.php 
+Dec 13 18:36:56 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:36:56 [debug] First page access in session 
+Dec 13 18:36:56 [debug] Refreshing session timeout 
+Dec 13 18:36:56 [debug] Running action: \App\Actions\Public\Home 
+Dec 13 18:36:56 [info] DUDE 
+Dec 13 18:37:23 [debug] ___________12-13-2023 18:37:23 
+Dec 13 18:37:43 [debug] ___________12-13-2023 18:37:43 
+Dec 13 18:37:59 [debug] ___________12-13-2023 18:37:59 
+Dec 13 18:37:59 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:37:59 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:37:59 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:37:59 [debug] QUERY_STRING:     
+Dec 13 18:37:59 [debug] REQUEST_URI:     / 
+Dec 13 18:37:59 [debug] PHP_SELF:        /index.php/ 
+Dec 13 18:37:59 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:37:59 [debug] First page access in session 
+Dec 13 18:37:59 [debug] Refreshing session timeout 
+Dec 13 18:37:59 [debug] Running action: \App\Actions\Public\Home 
+Dec 13 18:37:59 [info] DUDE 
+Dec 13 18:39:42 [debug] ___________12-13-2023 18:39:42 
+Dec 13 18:39:42 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:39:42 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:39:42 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:39:42 [debug] QUERY_STRING:     
+Dec 13 18:39:42 [debug] REQUEST_URI:     / 
+Dec 13 18:39:42 [debug] PHP_SELF:        /index.php/ 
+Dec 13 18:39:42 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:39:42 [debug] First page access in session 
+Dec 13 18:39:42 [debug] Refreshing session timeout 
+Dec 13 18:39:42 [debug] Running action: \App\Actions\Public\Home 
+Dec 13 18:39:42 [info] DUDE 
+Dec 13 18:39:47 [debug] ___________12-13-2023 18:39:47 
+Dec 13 18:39:47 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:39:47 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:39:47 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:39:47 [debug] QUERY_STRING:     
+Dec 13 18:39:47 [debug] REQUEST_URI:     /about 
+Dec 13 18:39:47 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:39:47 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:39:47 [debug] First page access in session 
+Dec 13 18:39:47 [debug] Refreshing session timeout 
+Dec 13 18:40:55 [debug] ___________12-13-2023 18:40:55 
+Dec 13 18:40:55 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:40:55 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:40:55 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:40:55 [debug] QUERY_STRING:     
+Dec 13 18:40:55 [debug] REQUEST_URI:     /about 
+Dec 13 18:40:55 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:40:55 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:40:55 [debug] First page access in session 
+Dec 13 18:40:55 [debug] Refreshing session timeout 
+Dec 13 18:41:09 [debug] ___________12-13-2023 18:41:09 
+Dec 13 18:41:09 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:41:09 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:41:09 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:41:09 [debug] QUERY_STRING:     
+Dec 13 18:41:09 [debug] REQUEST_URI:     /about 
+Dec 13 18:41:09 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:41:09 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:41:09 [debug] First page access in session 
+Dec 13 18:41:09 [debug] Refreshing session timeout 
+Dec 13 18:41:54 [debug] ___________12-13-2023 18:41:54 
+Dec 13 18:41:54 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:41:54 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:41:54 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:41:54 [debug] QUERY_STRING:     
+Dec 13 18:41:54 [debug] REQUEST_URI:     /about 
+Dec 13 18:41:54 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:41:54 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:41:54 [debug] First page access in session 
+Dec 13 18:41:54 [debug] Refreshing session timeout 
+Dec 13 18:42:27 [debug] ___________12-13-2023 18:42:27 
+Dec 13 18:42:27 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:42:27 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:42:27 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:42:27 [debug] QUERY_STRING:     
+Dec 13 18:42:27 [debug] REQUEST_URI:     /about 
+Dec 13 18:42:27 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:42:27 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:42:27 [debug] First page access in session 
+Dec 13 18:42:27 [debug] Refreshing session timeout 
+Dec 13 18:42:32 [debug] ___________12-13-2023 18:42:32 
+Dec 13 18:42:32 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:42:32 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:42:32 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:42:32 [debug] QUERY_STRING:     
+Dec 13 18:42:32 [debug] REQUEST_URI:     /about 
+Dec 13 18:42:32 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:42:32 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:42:32 [debug] First page access in session 
+Dec 13 18:42:32 [debug] Refreshing session timeout 
+Dec 13 18:42:59 [debug] ___________12-13-2023 18:42:59 
+Dec 13 18:42:59 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:42:59 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:42:59 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:42:59 [debug] QUERY_STRING:     
+Dec 13 18:42:59 [debug] REQUEST_URI:     /about 
+Dec 13 18:42:59 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:42:59 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:42:59 [debug] First page access in session 
+Dec 13 18:42:59 [debug] Refreshing session timeout 
+Dec 13 18:42:59 [debug] Running action: \App\Actions\Public\AboutController 
+Dec 13 18:53:26 [debug] ___________12-13-2023 18:53:26 
+Dec 13 18:53:26 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:53:26 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:53:26 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:53:26 [debug] QUERY_STRING:     
+Dec 13 18:53:26 [debug] REQUEST_URI:     /about 
+Dec 13 18:53:26 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:53:26 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:53:26 [debug] First page access in session 
+Dec 13 18:53:26 [debug] Refreshing session timeout 
+Dec 13 18:53:26 [debug] Running action: \App\Actions\Public\AboutController 
+Dec 13 18:53:52 [debug] ___________12-13-2023 18:53:52 
+Dec 13 18:53:52 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:53:52 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:53:52 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:53:52 [debug] QUERY_STRING:     
+Dec 13 18:53:52 [debug] REQUEST_URI:     /about 
+Dec 13 18:53:52 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:53:52 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:53:52 [debug] First page access in session 
+Dec 13 18:53:52 [debug] Refreshing session timeout 
+Dec 13 18:53:52 [debug] Running action: \App\Actions\Public\AboutController 
+Dec 13 18:57:13 [debug] ___________12-13-2023 18:57:13 
+Dec 13 18:57:13 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:57:13 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:57:13 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:57:13 [debug] QUERY_STRING:     
+Dec 13 18:57:13 [debug] REQUEST_URI:     /about 
+Dec 13 18:57:13 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:57:13 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:57:13 [debug] First page access in session 
+Dec 13 18:57:13 [debug] Refreshing session timeout 
+Dec 13 18:57:13 [debug] Running action: \App\Actions\Public\AboutController 
+Dec 13 18:57:37 [debug] ___________12-13-2023 18:57:37 
+Dec 13 18:57:37 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 13 18:57:37 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 13 18:57:37 [debug] REQUEST_METHOD:  GET 
+Dec 13 18:57:37 [debug] QUERY_STRING:     
+Dec 13 18:57:37 [debug] REQUEST_URI:     /about 
+Dec 13 18:57:37 [debug] PHP_SELF:        /index.php/about 
+Dec 13 18:57:37 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 13 18:57:37 [debug] First page access in session 
+Dec 13 18:57:37 [debug] Refreshing session timeout 
+Dec 13 18:57:37 [debug] Running action: \App\Actions\Public\AboutController 
+Dec 15 19:23:37 [debug] ___________12-15-2023 19:23:37 
+Dec 15 19:23:37 [debug] REMOTE_ADDR:     ::1 
+Dec 15 19:23:37 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 15 19:23:37 [debug] REQUEST_METHOD:  GET 
+Dec 15 19:23:37 [debug] QUERY_STRING:     
+Dec 15 19:23:37 [debug] REQUEST_URI:     / 
+Dec 15 19:23:37 [debug] PHP_SELF:        /index.php 
+Dec 15 19:23:37 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 15 19:23:37 [debug] First page access in session 
+Dec 15 19:23:37 [debug] Refreshing session timeout 
+Dec 15 19:23:37 [debug] Running action: \App\Actions\Public\Home 
+Dec 15 19:23:37 [info] DUDE 
+Dec 15 19:23:52 [debug] ___________12-15-2023 19:23:52 
+Dec 15 19:23:52 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 15 19:23:52 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 15 19:23:52 [debug] REQUEST_METHOD:  GET 
+Dec 15 19:23:52 [debug] QUERY_STRING:     
+Dec 15 19:23:52 [debug] REQUEST_URI:     / 
+Dec 15 19:23:52 [debug] PHP_SELF:        /index.php/ 
+Dec 15 19:23:52 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 15 19:23:52 [debug] First page access in session 
+Dec 15 19:23:52 [debug] Refreshing session timeout 
+Dec 15 19:23:52 [debug] Running action: \App\Actions\Public\Home 
+Dec 15 19:23:52 [info] DUDE 
+Dec 15 19:24:25 [debug] ___________12-15-2023 19:24:25 
+Dec 15 19:24:25 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 15 19:24:25 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 15 19:24:25 [debug] REQUEST_METHOD:  GET 
+Dec 15 19:24:25 [debug] QUERY_STRING:     
+Dec 15 19:24:25 [debug] REQUEST_URI:     /about 
+Dec 15 19:24:25 [debug] PHP_SELF:        /index.php/about 
+Dec 15 19:24:25 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 15 19:24:25 [debug] First page access in session 
+Dec 15 19:24:25 [debug] Refreshing session timeout 
+Dec 15 19:24:25 [debug] Running action: \App\Actions\Public\AboutController 
+Dec 15 19:24:36 [debug] ___________12-15-2023 19:24:36 
+Dec 15 19:24:36 [debug] REMOTE_ADDR:     127.0.0.1 
+Dec 15 19:24:36 [debug] HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0 
+Dec 15 19:24:36 [debug] REQUEST_METHOD:  GET 
+Dec 15 19:24:36 [debug] QUERY_STRING:     
+Dec 15 19:24:36 [debug] REQUEST_URI:     /about 
+Dec 15 19:24:36 [debug] PHP_SELF:        /index.php/about 
+Dec 15 19:24:36 [debug] Starting session (GW_Public, (strlen: 0)), 525600, /, .gardner-white.com, ) 
+Dec 15 19:24:36 [debug] First page access in session 
+Dec 15 19:24:36 [debug] Refreshing session timeout 
+Dec 15 19:24:36 [debug] Running action: \App\Actions\Public\AboutController 

@@ -39,7 +39,7 @@ abstract class Lava
 
 	public function run()
 	{
-		$this->log("___________".date("m-d-Y H:i:s"), Logger::DEBUG);
+		$this->log("___________".date("m-d-Y H:i:s"), LavaLogLevel::DEBUG);
 		$this->log("REMOTE_ADDR:     ".$_SERVER['REMOTE_ADDR'], PEAR_LOG_DEBUG);
 		$this->log("HTTP_USER_AGENT: ".$_SERVER['HTTP_USER_AGENT'], PEAR_LOG_DEBUG);
 		$this->log("REQUEST_METHOD:  ".$_SERVER['REQUEST_METHOD'], PEAR_LOG_DEBUG);
@@ -177,7 +177,7 @@ abstract class Lava
 
 	public function getPathClass($actionPath)
 	{
-		if (str_contains($actionPath, "/")) {
+		if (strpos($actionPath,"/") !== false) {
 			$actionClass = preg_replace("/.*\//", "", $actionPath);
 		} else {
 			$actionClass = $actionPath;
@@ -439,7 +439,7 @@ abstract class Lava
 
 	public function addRoute($route = [])
 	{
-		$this->routes[] = $route;
+		$this->routes = array_merge($this->routes, $route);
 	}
 
 	public function setConfig($config = [])
@@ -449,6 +449,6 @@ abstract class Lava
 
 	public function addConfig($option = [])
 	{
-		$this->config[] = $option;
+		$this->config = array_merge($this->config, $option);
 	}
 }

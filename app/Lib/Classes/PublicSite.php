@@ -163,4 +163,9 @@ class PublicSite extends Lava
 //		include(basePath("app/Actions/Public/" . $file . ".php"));
 //		return require basePath("app/Actions/Public/" . $file . ".php");
 	}
+
+	public function saveCachedResponse($response)
+	{
+		// TODO: Implement saveCachedResponse() method.
+	}
 }
