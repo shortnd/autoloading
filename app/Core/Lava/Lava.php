@@ -18,6 +18,7 @@ abstract class Lava
 	public $pathInfo;
 	public $extension;
 	public  $action;
+	public $contentType;
 	public $debug = [];
 	public $attributes = [];
 	private $app;
@@ -40,12 +41,12 @@ abstract class Lava
 	public function run()
 	{
 		$this->log("___________".date("m-d-Y H:i:s"), LavaLogLevel::DEBUG);
-		$this->log("REMOTE_ADDR:     ".$_SERVER['REMOTE_ADDR'], PEAR_LOG_DEBUG);
-		$this->log("HTTP_USER_AGENT: ".$_SERVER['HTTP_USER_AGENT'], PEAR_LOG_DEBUG);
-		$this->log("REQUEST_METHOD:  ".$_SERVER['REQUEST_METHOD'], PEAR_LOG_DEBUG);
-		$this->log("QUERY_STRING:    ".$_SERVER['QUERY_STRING'], PEAR_LOG_DEBUG);
-		$this->log("REQUEST_URI:     ".$_SERVER['REQUEST_URI'], PEAR_LOG_DEBUG);
-		$this->log("PHP_SELF:        ".$_SERVER['PHP_SELF'], PEAR_LOG_DEBUG);
+		$this->log("REMOTE_ADDR:     ".$_SERVER['REMOTE_ADDR']);
+		$this->log("HTTP_USER_AGENT: ".$_SERVER['HTTP_USER_AGENT']);
+		$this->log("REQUEST_METHOD:  ".$_SERVER['REQUEST_METHOD']);
+		$this->log("QUERY_STRING:    ".(array_key_exists('QUERY_STRING', $_SERVER) ? $_SERVER['QUERY_STRING'] : ''));
+		$this->log("REQUEST_URI:     ".$_SERVER['REQUEST_URI']);
+		$this->log("PHP_SELF:        ".$_SERVER['PHP_SELF']);
 
 		if (!$this->config) {
 			$this->log("No configuration file", PEAR_LOG_ERR);
@@ -159,20 +160,28 @@ abstract class Lava
 
 	abstract public function checkAuthentication();
 
-	public function parsePath()
+	public function parsePath($basePath = "")
 	{
 		$uri = $_SERVER['PHP_SELF'];
 		$uri = preg_replace("/\?.*/", "", $uri);
 
-		preg_match('@' . preg_quote($this->config['app']['controller']['uri'], '@') . '/(.*)@', $uri, $matches);
-		$actionPath = $matches[1];
-		$actionClass = $this->getPathClass($actionPath);
+		$baseControllerUri = '/index.php';
 
-		$info = array();
-		$info['actionClass'] = $actionClass;
-		$info['actionPath'] = $actionPath;
+		if (
+			array_key_exists('app', $this->config) &&
+			array_key_exists('controller', $this->config['app']) &&
+			array_key_exists('uri', $this->config['app']['controller'])
+		) {
+			$baseControllerUri = preg_quote($this->config['app']['controller']['uri'], '@');
+		}
 
-		return $info;
+		preg_match('@' . $baseControllerUri . '/(.*)@', $uri, $matches);
+		$actionClass = $this->getPathClass($matches[1]);
+
+		return [
+			'actionPath' => $matches[1],
+			'actionClass' => $actionClass
+		];
 	}
 
 	public function getPathClass($actionPath)
@@ -198,6 +207,7 @@ abstract class Lava
 	public function cache()
 	{
 		// implement in subclass
+		return false;
 	}
 
 	public function runAction($actionPath, $params = [], $checkCache = false)
@@ -205,35 +215,25 @@ abstract class Lava
 		if (!$actionPath) {
 			$this->handleNoActionPath();
 		} else {
-
 			$actionClass = $this->getPathClass($actionPath);
-			if (!class_exists($actionClass) && !$this->import($actionPath . ".php")) {
+			if (!class_exists($actionClass)) {
 				$this->handleActionNotFound($actionPath);
 			}
-
-			$this->log("Running action: $actionClass", PEAR_LOG_DEBUG);
-			$this->action = new $actionClass;
-			if (!is_subclass_of($this->action, 'LavaAction')) {
-				$this->lavaExit("Action $actionClass must extend LavaAction.");
+			$this->action = new $actionClass($this);
+			if (!is_subclass_of($this->action, LavaAction::class)) {
+				$this->lavaExit("Action $actionClass must extend LavaAction");
 			}
 			if (is_array($params) && count($params)) {
-				foreach ($params as $k => $v) {
-					$this->action->setParam($k, $v);
+				foreach ($params as $key => $value) {
+					$this->action->setParams($key, $value);
 				}
 			}
-
-			// check the cache. the action class has been included
-			// at this point, so the cache() function has access
-			// to the class vars
 			if ($checkCache) {
 				$this->cache();
 			}
-
 			$forward = $this->action->run($this);
-
-			if (strtolower(get_class($forward)) === "actionforward") {
-				// run the return action but DO NOT check cache again
-				$this->runAction($forward->path, $forward->params, false);
+			if (is_subclass_of($forward, ActionForward::class)) {
+				$this->runAction($forward->path, $forward->params);
 			}
 		}
 	}
@@ -254,6 +254,7 @@ abstract class Lava
 			$this->httpHeader(404);
 		}
 		$this->errorExit("No action specified in URL");
+		exit();
 	}
 
 	public function finish()
@@ -266,27 +267,27 @@ abstract class Lava
 		$controller = $this->config['app']['controller']['uri'];
 
 		// remove trailing slash on base URL
-		while (substr($base, -1) == "/") {
+		while (substr($base, -1) === "/") {
 			$base = substr($base, 0, -1);
 		}
 
 		// add slash to beginning of controller
-		if (substr($controller, 0, 1) != "/") {
+		if (strpos($controller, "/") !== 0) {
 			$controller = "/$controller";
 		}
 
 		// add slash to end of controller
-		if (substr($controller, 0, -1) != "/") {
+		if (strpos($controller, "/", strlen($controller)) !== 0) {
 			$controller = "$controller/";
 		}
 
 		// strip slash from beginning of action
-		while (substr($action, 0, 1) == "/") {
+		while ($action[0] === "/") {
 			$action = substr($action, 1);
 		}
 
 		// strip slash from end of action
-		while (substr($action, -1) == "/") {
+		while (substr($action, -1) === "/") {
 			$action = substr($action, 0, -1);
 		}
 
@@ -368,12 +369,13 @@ abstract class Lava
 		return false;
 	}
 
-	public function lavaExit($error = "")
+	public function lavaExit($error = "", $code = null, $httpStatus=500)
 	{
 		if (!headers_sent()) {
-			$this->httpHeader(500);
+			$this->httpHeader($httpStatus);
 		}
-		return $this->errorExit($error);
+		$this->log("Lava exit: $error" . ($code ?: ''));
+		$this->errorExit($error);
 	}
 
 	public function errorExit($error = "")
@@ -450,5 +452,16 @@ abstract class Lava
 	public function addConfig($option = [])
 	{
 		$this->config = array_merge($this->config, $option);
+	}
+
+	public function handleToCamelCase(string $string, $lowerFirst = false)
+	{
+		$parts = array_map(static function ($word) {
+			return ucwords($word);
+		}, explode("-", $string));
+		if ($lowerFirst) {
+			$parts[0] = strtolower($parts[0]);
+		}
+		return implode("", $parts);
 	}
 }

@@ -9,28 +9,27 @@ abstract class LavaAction
 {
 	public $app;
 	public $params;
-
-	private $tpl;
+	public $route;
+	public $method;
 
 	public static $cache = false;
 
 	public function __construct(Lava $app, $actionParams = [])
 	{
 		$this->app = $app;
-//		$this->tpl = $tpl;
+
 		$this->params = $actionParams;
+		$this->route = array_key_exists('route', $app->pathInfo) ? $app->pathInfo['route'] : null;
+		$this->method = $this->defineMethod();
 	}
 
 	/**
-	 * @return mixed
+	 * @return void
 	 */
-	abstract public function run(
-//		Lava $app
-	);
-//	{
-////		$this->app = $app;
-//		// ..override?
-//	}
+	public function run()
+	{
+		call_user_func_array([$this, $this->method], $this->params);
+	}
 
 	public function getParams()
 	{
@@ -47,18 +46,61 @@ abstract class LavaAction
 		$this->params[$name] = $value;
 	}
 
-	abstract public function render($template, $params = []);
-//	{
-////		if (!is_array($params)) {
-////			$params = [$params];
-////		}
-////		$this->tpl->assign($params);
-////
-////		try {
-////			$this->tpl->display($template);
-////			return true;
-////		} catch (SmartyException|Exception $_) {
-////			return false;
-////		}
-//	}
+	public function defineMethod(): string
+	{
+		// The method of this controller we'll be calling in run()
+		$method = $this->getRequestVerb();
+
+		// The "action" being called via this controller
+		$action = array_shift($this->params);
+
+		if (!is_null($action) && $action !== '') {
+			$method .= $this->handleToCamelCase($action);
+		}
+
+		if (!method_exists($this,$method)) {
+			$this->app->redirectAction($this->route,$_GET);
+		}
+
+		return $method;
+	}
+
+	public function getRequestVerb()
+	{
+		$requestMethod = 'get';
+		if (array_key_exists('override_request_method', $_POST)) {
+			$requestMethod = strtolower($_POST['override_request_method']);
+		} else if ($_SERVER['REQUEST_METHOD']) {
+			$requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
+		}
+
+		switch ($requestMethod) {
+			case "head":
+				exit();
+			case "put":
+				return "update";
+			case "delete":
+				return "delete";
+			case "post":
+				return "add";
+			case "get":
+				return "view";
+			default:
+				return $requestMethod;
+		}
+	}
+
+	abstract public function render(string $template, $params = []): bool;
+
+
+	private function handleToCamelCase(string $string, bool $lowerFirst = false): string
+	{
+		$parts = array_map(static function ($part) {
+			return ucwords($part);
+		}, explode("-", $string));
+		if ($lowerFirst) {
+			$parts[0] = strtolower($parts[0]);
+		}
+		return implode("", $parts);
+	}
 }

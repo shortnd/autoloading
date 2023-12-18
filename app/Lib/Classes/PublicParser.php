@@ -3,7 +3,7 @@
 namespace App\Lib\Classes;
 
 use App\Core\Lava\Lava;
-use App\Core\Smarty\Smarty;
+use Smarty;
 
 class PublicParser extends Smarty
 {
@@ -13,7 +13,7 @@ class PublicParser extends Smarty
 		parent::__construct();
 
 		$this->setTemplateDir([
-			BASE_PATH . 'templates'
+			BASE_PATH . 'templates/public'
 		]);
 		$this->setCompileDir(BASE_PATH . 'public/tpl_compiled/public');
 
